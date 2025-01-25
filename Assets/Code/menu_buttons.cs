@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class menu_buttons : MonoBehaviour
 {
-    public void new_game()
-    {
-
-    }
+    // Main Menu buttons
     public void play_game()
     {
         SceneManager.LoadSceneAsync("Level Menu");
@@ -17,7 +14,8 @@ public class menu_buttons : MonoBehaviour
     {
         Application.Quit();
     }
-    public void mainMenu()
+    // Pause Menu buttons
+    public void main_menu()
     {
         SceneManager.LoadSceneAsync("MainMenu");
     }
