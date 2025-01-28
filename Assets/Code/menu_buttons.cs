@@ -8,7 +8,7 @@ public class menu_buttons : MonoBehaviour
     // Main Menu buttons
     public void play_game()
     {
-        SceneManager.LoadSceneAsync("Level Menu");
+        SceneManager.LoadSceneAsync("Game");
     }
     public void quit_game()
     {
@@ -17,6 +17,6 @@ public class menu_buttons : MonoBehaviour
     // Pause Menu buttons
     public void main_menu()
     {
-        SceneManager.LoadSceneAsync("MainMenu");
+        SceneManager.LoadSceneAsync("Main Menu");
     }
 }
