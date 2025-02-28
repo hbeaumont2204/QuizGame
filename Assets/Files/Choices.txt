@@ -1,2 +1,6 @@
 Taiwan,Borneo,Java,Niue
 Singapore,Maldives,Brunei,Bahrain
+Elizabeth II,Henry VIII,Victoria,George V
+China,Korea,Japan,Vietnam
+Philippines,China,Burma,Korea
+Brunei,Japan,Bhutan,Thailand
