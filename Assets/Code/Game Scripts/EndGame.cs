@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
+    public GameObject endScreen;
     public TextMeshProUGUI previousScore;
     public TextMeshProUGUI highScore;
 
