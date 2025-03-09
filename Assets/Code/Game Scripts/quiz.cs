@@ -24,6 +24,10 @@ public class quiz  : MonoBehaviour
     public TextMeshProUGUI choiceC;
     public TextMeshProUGUI choiceD;
     public TextMeshProUGUI timerDisplay;
+    // Game screens
+    public GameObject questionScreen;
+    public GameObject endScreen;
+
     [SerializeField] private Slider timerSlider;
     
     // Called at the start
@@ -70,8 +74,6 @@ public class quiz  : MonoBehaviour
             question newQuestion = new question(allQuestions[i], allChoices[i], answer);
             Array.Resize(ref questions, questions.Length + 1);
             questions[questions.Length - 1] = newQuestion;
-            //Debug.Log(allQuestions[i]);
-            //Debug.Log(answer);
         }
         displayQuestion();
     }
@@ -113,7 +115,6 @@ public class quiz  : MonoBehaviour
                     string[] options = line.Split(',');
                     Array.Resize(ref data, data.Length + 1);
                     data[data.Length - 1] = options;
-                    //Debug.Log(line);
                 }
 
             }
@@ -180,18 +181,23 @@ public class quiz  : MonoBehaviour
     {
         score = score - 5; // 5 points lost for a correct answer
         scoreDisplay.text = score.ToString();
+        resultDisplay.text = "Incorrect answer";
+        resultDisplay.color = Color.red;
+        currentQuestionNumber++;
         if (score == 0)
         {
             scoreDisplay.color = Color.yellow;
+            Invoke("displayQuestion", 5.0f); // 5 second delay
         }
         else if (score < 0)
         {
             scoreDisplay.color = Color.red;
+            Invoke("endQuiz", 5.0f); // 5 second delay
         }
-        resultDisplay.text = "Incorrect answer";
-        resultDisplay.color = Color.red;
-        currentQuestionNumber++;
-        Invoke("displayQuestion", 5.0f); // 5 second delay
+        else
+        {
+            Invoke("displayQuestion", 5.0f); // 5 second delay
+        }
     }
 
     void skipQuestion()
@@ -205,7 +211,8 @@ public class quiz  : MonoBehaviour
     // Displays end score
     void endQuiz()
     {
-
+        questionScreen.SetActive(false);
+        endScreen.SetActive(true);
     }
 
     // Choice Buttons

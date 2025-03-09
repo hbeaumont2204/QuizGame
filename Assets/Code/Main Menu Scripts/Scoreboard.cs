@@ -13,10 +13,14 @@ public class Scoreboard : MonoBehaviour
     public TextMeshProUGUI previousScore;
     public TextMeshProUGUI highScore;
 
-    // Update is called once per frame
-    void Update()
+    string pScore;
+    string hScore;
+    void Start()
     {
-        
+        pScore = getScore("Assets/Files/Previous Score.txt");
+        hScore = getScore("Assets/Files/High Score.txt");
+        previousScore.text = "Previous Score:" + pScore.ToString();
+        highScore.text = "High Score:" + hScore.ToString();
     }
 
     string getScore(string path)

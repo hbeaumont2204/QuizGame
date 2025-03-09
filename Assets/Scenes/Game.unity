@@ -324,7 +324,7 @@ RectTransform:
   m_Father: {fileID: 44892144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentQuestionNumber: 0
-  score: 0
+  score: 10
   questionActive: 0
   questionDisplay: {fileID: 497310326}
   scoreDisplay: {fileID: 1053833712}
@@ -528,6 +528,8 @@ MonoBehaviour:
   choiceC: {fileID: 815363183}
   choiceD: {fileID: 558345307}
   timerDisplay: {fileID: 1184466424}
+  questionScreen: {fileID: 1098873538}
+  endScreen: {fileID: 2003029179}
   timerSlider: {fileID: 1538582036}
 --- !u!114 &330585549
 MonoBehaviour:
@@ -541,7 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d673d6c347de21d43a7964401acf469b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endScreen: {fileID: 0}
   previousScore: {fileID: 146211581}
   highScore: {fileID: 1374872504}
 --- !u!1 &362834879
@@ -1276,7 +1277,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 735273222}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 330585549}
+        m_TargetAssemblyTypeName: EndGame, Assembly-CSharp
+        m_MethodName: mainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &735273222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1823,7 +1836,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1917,7 +1930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1098873539
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2574,7 +2587,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1344179182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 330585549}
+        m_TargetAssemblyTypeName: EndGame, Assembly-CSharp
+        m_MethodName: quitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1344179182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3548,7 +3573,7 @@ RectTransform:
   m_Father: {fileID: 2061187997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3600,12 +3625,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2003029180}
   m_Layer: 5
-  m_Name: End Screen
+  m_Name: EndScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2003029180
 RectTransform:
   m_ObjectHideFlags: 0

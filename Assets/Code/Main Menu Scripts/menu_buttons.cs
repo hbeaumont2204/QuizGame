@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class menu_buttons : MonoBehaviour
 {
+    public GameObject rulesScreen;
+
     // Main Menu buttons
     public void play_game()
     {
@@ -18,5 +20,15 @@ public class menu_buttons : MonoBehaviour
     public void main_menu()
     {
         SceneManager.LoadSceneAsync("Main Menu");
+    }
+
+    public void openRules()
+    {
+        rulesScreen.SetActive(true);
+    }
+
+    public void closeRules()
+    {
+        rulesScreen.SetActive(false);
     }
 }
