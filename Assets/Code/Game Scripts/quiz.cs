@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.IO;
 using System;
 using TMPro;
-
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 public class quiz  : MonoBehaviour
 {
     public question[] questions = { }; // Array containing questions
@@ -29,7 +30,12 @@ public class quiz  : MonoBehaviour
     public GameObject endScreen;
 
     [SerializeField] private Slider timerSlider;
-    
+
+    public TextMeshProUGUI previousScore;
+    public TextMeshProUGUI highScore;
+    string pScore;
+    string hScore;
+
     // Called at the start
     private void Start()
     {
@@ -125,6 +131,26 @@ public class quiz  : MonoBehaviour
         }
         return data;
     }
+
+    string getScore(string path)
+    {
+        StreamReader sr = new StreamReader(path);
+        string line = sr.ReadLine();
+        return line;
+    }
+    public void updateScore(string text, string path)
+    {
+        if (score > 0)
+        {
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.WriteLine(text);
+                sw.Close();
+            }
+            
+        }
+    }
+
     // Displays the current question
     void displayQuestion()
     {
@@ -211,6 +237,20 @@ public class quiz  : MonoBehaviour
     // Displays end score
     void endQuiz()
     {
+        String hScorePath = "Assets/Files/High Score.txt";
+        hScore = getScore(hScorePath);
+        previousScore.text = "Previous Score: " + score.ToString();
+        if (score > Convert.ToInt32(hScore))
+        {
+            updateScore(pScore.ToString(), hScorePath);
+            highScore.text = "High Score: " + pScore.ToString();
+        }
+        else
+        {
+            //hScore = getScore(hScorePath);
+            highScore.text = "High Score: " + hScore.ToString();
+        }
+        updateScore(score.ToString(), "Assets/Files/Previous Score.txt");
         questionScreen.SetActive(false);
         endScreen.SetActive(true);
     }
@@ -259,6 +299,15 @@ public class quiz  : MonoBehaviour
         {
             questionActive = false;
             checkAnswer(-1, currentQuestion);
+        }
+    }
+
+    public void end()
+    {
+        if (questionActive)
+        {
+            questionActive = false;
+            endQuiz();
         }
     }
 }

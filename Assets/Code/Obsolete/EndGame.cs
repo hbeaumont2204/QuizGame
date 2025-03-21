@@ -16,10 +16,28 @@ public class EndGame : MonoBehaviour
     string hScore;
     void Start()
     {
+        String hScorePath = "Assets/Files/High Score.txt";
         pScore = getScore("Assets/Files/Previous Score.txt");
-        hScore = getScore("Assets/Files/High Score.txt");
-        previousScore.text = "Previous Score:" + pScore.ToString();
-        highScore.text = "High Score:" + hScore.ToString();
+        hScore = getScore(hScorePath);
+        previousScore.text = "Previous Score: " + pScore.ToString();
+        if (Convert.ToInt32(pScore) > Convert.ToInt32(hScore))
+        {
+            highScore.text = "High Score: " + pScore.ToString();
+            updateHighScore(pScore, hScorePath);
+        }
+        else
+        {
+            highScore.text = "High Score: " + hScore.ToString();
+        }
+
+    }
+
+    public void updateHighScore(string text, string path)
+    {
+        using (StreamWriter sw = new StreamWriter(path))
+        {
+            sw.WriteLine(text);
+        }
     }
 
     public void mainMenu()
