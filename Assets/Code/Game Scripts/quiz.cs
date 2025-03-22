@@ -136,6 +136,7 @@ public class quiz  : MonoBehaviour
     {
         StreamReader sr = new StreamReader(path);
         string line = sr.ReadLine();
+        sr.Close();
         return line;
     }
     public void updateScore(string text, string path)
@@ -207,9 +208,13 @@ public class quiz  : MonoBehaviour
     {
         score = score - 5; // 5 points lost for a correct answer
         scoreDisplay.text = score.ToString();
-        resultDisplay.text = "Incorrect answer";
+        resultDisplay.text = "Incorrect answer"; // Displays message
         resultDisplay.color = Color.red;
-        currentQuestionNumber++;
+        currentQuestionNumber++; // Increments to next question number
+        /* Checks score, if above zero, the next question is displayed after a delay
+        If the score is zero, the colour of the score turns yellow as another wrong answer
+        will cause them to lose.
+        If the score is under zero then the game ends. */
         if (score == 0)
         {
             scoreDisplay.color = Color.yellow;
@@ -228,21 +233,29 @@ public class quiz  : MonoBehaviour
 
     void skipQuestion()
     {
-        // No score change
+        /* The player can choose to skip a question. If they do, the score
+        doesn't change and the next question is displayed */
         resultDisplay.text = "No answer given";
         resultDisplay.color = Color.yellow;
         currentQuestionNumber++;
         Invoke("displayQuestion", 5.0f); // 5 second delay
     }
-    // Displays end score
+    
     void endQuiz()
     {
+        /* Once the quiz is completed, this function is called. It checks the scores
+        and displays them accordingly. The score in the game is always dislpayed 
+        (if it is not negative.) If the score is higher than the current score,
+        it is also displayed as a high score. */
         String hScorePath = "Assets/Files/High Score.txt";
         hScore = getScore(hScorePath);
-        previousScore.text = "Previous Score: " + score.ToString();
+        if (score >= 0 && score <= Convert.ToInt32(hScore)) 
+        {
+            previousScore.text = "Previous Score: " + score.ToString();
+        }
         if (score > Convert.ToInt32(hScore))
         {
-            updateScore(pScore.ToString(), hScorePath);
+            updateScore(score.ToString(), hScorePath);
             highScore.text = "High Score: " + pScore.ToString();
         }
         else
@@ -255,7 +268,7 @@ public class quiz  : MonoBehaviour
         endScreen.SetActive(true);
     }
 
-    // Choice Buttons
+    // Buttons
     public void ChoiceA()
     {
         if (questionActive)
