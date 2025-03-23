@@ -33,7 +33,6 @@ public class quiz  : MonoBehaviour
 
     public TextMeshProUGUI previousScore;
     public TextMeshProUGUI highScore;
-    string pScore;
     string hScore;
 
     // Called at the start
@@ -70,9 +69,13 @@ public class quiz  : MonoBehaviour
     // Takes questions, choices and the correct answer index from text files
     void setup()
     {
-        string[] allQuestions = ReadFile("Assets/Files/Questions.txt");
-        string[][] allChoices = GetChoices("Assets/Files/Choices.txt");
-        string[] allAnswers =  ReadFile("Assets/Files/Answers.txt");
+        string questionsPath = Path.Combine(Application.streamingAssetsPath, "Questions.txt");
+        string choicesPath = Path.Combine(Application.streamingAssetsPath, "Choices.txt");
+        string answersPath = Path.Combine(Application.streamingAssetsPath, "Answers.txt");
+
+        string[] allQuestions = ReadFile(questionsPath);
+        string[][] allChoices = GetChoices(choicesPath);
+        string[] allAnswers =  ReadFile(answersPath);
         // Adds every question to the array questions.
         for (int i = 0; i < allAnswers.Length; i++)
         {
@@ -247,23 +250,23 @@ public class quiz  : MonoBehaviour
         and displays them accordingly. The score in the game is always dislpayed 
         (if it is not negative.) If the score is higher than the current score,
         it is also displayed as a high score. */
-        String hScorePath = "Assets/Files/High Score.txt";
+        string hScorePath = Path.Combine(Application.streamingAssetsPath, "High Score.txt");
         hScore = getScore(hScorePath);
-        if (score >= 0 && score <= Convert.ToInt32(hScore)) 
+        if (score >= 0) 
         {
-            previousScore.text = "Previous Score: " + score.ToString();
+            previousScore.text = "Score: " + score.ToString();
         }
         if (score > Convert.ToInt32(hScore))
         {
             updateScore(score.ToString(), hScorePath);
-            highScore.text = "High Score: " + pScore.ToString();
+            highScore.text = "High Score: " + score.ToString();
         }
         else
         {
-            //hScore = getScore(hScorePath);
             highScore.text = "High Score: " + hScore.ToString();
         }
-        updateScore(score.ToString(), "Assets/Files/Previous Score.txt");
+        string pScorepath = Path.Combine(Application.streamingAssetsPath, "Previous Score.txt");
+        updateScore(score.ToString(), pScorepath);
         questionScreen.SetActive(false);
         endScreen.SetActive(true);
     }

@@ -15,12 +15,14 @@ public class Scoreboard : MonoBehaviour
 
     string pScore;
     string hScore;
+    string hScorePath = Path.Combine(Application.streamingAssetsPath, "High Score.txt");
+    string pScorePath = Path.Combine(Application.streamingAssetsPath, "Previous Score.txt");
     void Start()
     {
-        pScore = getScore("Assets/Files/Previous Score.txt");
-        hScore = getScore("Assets/Files/High Score.txt");
-        previousScore.text = "Previous Score:" + pScore.ToString();
-        highScore.text = "High Score:" + hScore.ToString();
+        pScore = getScore(pScorePath);
+        hScore = getScore(hScorePath);
+        previousScore.text = "Previous Score: " + pScore.ToString();
+        highScore.text = "High Score: " + hScore.ToString();
     }
 
     string getScore(string path)
