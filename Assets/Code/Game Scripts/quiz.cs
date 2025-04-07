@@ -8,8 +8,11 @@ using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+
+
 public class quiz  : MonoBehaviour
 {
+    FileManagement fileManager = new FileManagement();
     public question[] questions = { }; // Array containing questions
     public int currentQuestionNumber = 0; // Index of the current question
     question currentQuestion; // The current question
@@ -25,14 +28,14 @@ public class quiz  : MonoBehaviour
     public TextMeshProUGUI choiceC;
     public TextMeshProUGUI choiceD;
     public TextMeshProUGUI timerDisplay;
+    public TextMeshProUGUI previousScore;
+    public TextMeshProUGUI highScore;
     // Game screens
     public GameObject questionScreen;
     public GameObject endScreen;
 
     [SerializeField] private Slider timerSlider;
 
-    public TextMeshProUGUI previousScore;
-    public TextMeshProUGUI highScore;
     string hScore;
 
     // Called at the start
@@ -73,9 +76,9 @@ public class quiz  : MonoBehaviour
         string choicesPath = Path.Combine(Application.streamingAssetsPath, "Choices.txt");
         string answersPath = Path.Combine(Application.streamingAssetsPath, "Answers.txt");
 
-        string[] allQuestions = ReadFile(questionsPath);
-        string[][] allChoices = GetChoices(choicesPath);
-        string[] allAnswers =  ReadFile(answersPath);
+        string[] allQuestions = fileManager.ReadFile(questionsPath);
+        string[][] allChoices = fileManager.GetChoices(choicesPath);
+        string[] allAnswers =  fileManager.ReadFile(answersPath);
         // Adds every question to the array questions.
         for (int i = 0; i < allAnswers.Length; i++)
         {
@@ -85,74 +88,6 @@ public class quiz  : MonoBehaviour
             questions[questions.Length - 1] = newQuestion;
         }
         displayQuestion();
-    }
-
-    // Reads data from a text file
-    string[] ReadFile(string path)
-    {
-        string[] data = { };
-        if (File.Exists(path))
-        {
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    Array.Resize(ref data, data.Length + 1);
-                    data[data.Length - 1] = line;
-                    //Debug.Log(line);
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("Error");
-        }
-        return data;
-    }
-    // Used to read the choices from a text file
-    string[][] GetChoices(string path)
-    {
-        string[][] data = { };
-        if (File.Exists(path))
-        {
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] options = line.Split(',');
-                    Array.Resize(ref data, data.Length + 1);
-                    data[data.Length - 1] = options;
-                }
-
-            }
-        }
-        else
-        {
-            Debug.Log("Error");
-        }
-        return data;
-    }
-
-    string getScore(string path)
-    {
-        StreamReader sr = new StreamReader(path);
-        string line = sr.ReadLine();
-        sr.Close();
-        return line;
-    }
-    public void updateScore(string text, string path)
-    {
-        if (score > 0)
-        {
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(text);
-                sw.Close();
-            }
-            
-        }
     }
 
     // Displays the current question
@@ -251,14 +186,14 @@ public class quiz  : MonoBehaviour
         (if it is not negative.) If the score is higher than the current score,
         it is also displayed as a high score. */
         string hScorePath = Path.Combine(Application.streamingAssetsPath, "High Score.txt");
-        hScore = getScore(hScorePath);
+        hScore = fileManager.getScore(hScorePath);
         if (score >= 0) 
         {
             previousScore.text = "Score: " + score.ToString();
         }
         if (score > Convert.ToInt32(hScore))
         {
-            updateScore(score.ToString(), hScorePath);
+            fileManager.updateScore(score.ToString(), hScorePath);
             highScore.text = "High Score: " + score.ToString();
         }
         else
@@ -266,7 +201,7 @@ public class quiz  : MonoBehaviour
             highScore.text = "High Score: " + hScore.ToString();
         }
         string pScorepath = Path.Combine(Application.streamingAssetsPath, "Previous Score.txt");
-        updateScore(score.ToString(), pScorepath);
+        fileManager.updateScore(score.ToString(), pScorepath);
         questionScreen.SetActive(false);
         endScreen.SetActive(true);
     }
