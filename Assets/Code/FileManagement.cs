@@ -9,6 +9,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
+/* A class containing functions that read/ write to text files.
+This is used in saving and updating scores */
 public class FileManagement
 {
     // Reads data from a text file
