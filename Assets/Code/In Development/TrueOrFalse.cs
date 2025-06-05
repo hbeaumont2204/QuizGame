@@ -9,13 +9,18 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
-// True or False
-public class quiz1  : MonoBehaviour
+/**
+ * Class for the True of False Quiz game
+ * Selects a question pack and selects each question in order
+ * Checks all answers given and returns results accordingly 
+**/
+public class TrueOrFalse  : MonoBehaviour
 {
     FileManagement fileManager = new FileManagement();
-    public question[] questions = { }; // Array containing questions
+    QuestionPackSelection packSelection = new QuestionPackSelection(); 
+    public TrueOrFalseQuestion[] questions = { }; // Array containing questions
     public int currentQuestionNumber = 0; // Index of the current question
-    question currentQuestion; // The current question
+    TrueOrFalseQuestion currentQuestion; // The current question
     public int score = 10; // Player Score
     public bool questionActive;
     float timer = 30; // 30 seconds to answer every question
@@ -23,8 +28,6 @@ public class quiz1  : MonoBehaviour
     public TextMeshProUGUI questionDisplay;
     public TextMeshProUGUI scoreDisplay;
     public TextMeshProUGUI resultDisplay;
-    public TextMeshProUGUI choiceA;
-    public TextMeshProUGUI choiceB;
     public TextMeshProUGUI timerDisplay;
     public TextMeshProUGUI previousScore;
     public TextMeshProUGUI highScore;
@@ -70,16 +73,16 @@ public class quiz1  : MonoBehaviour
     // Takes questions, choices and the correct answer index from text files
     void setup()
     {
-        string questionsPath = Path.Combine(Application.streamingAssetsPath, "Questions.txt");
-        string answersPath = Path.Combine(Application.streamingAssetsPath, "Answers.txt");
-
+        string[] questionPack = packSelection.GetQuestionPack(1);
+        string questionsPath = Path.Combine(Application.streamingAssetsPath, questionPack[0]);
+        string answersPath = Path.Combine(Application.streamingAssetsPath, questionPack[1]);
         string[] allQuestions = fileManager.ReadFile(questionsPath);
         string[] allAnswers =  fileManager.ReadFile(answersPath);
         // Adds every question to the array questions.
         for (int i = 0; i < allAnswers.Length; i++)
         {
             int answer = Convert.ToInt32(allAnswers[i]);
-            question newQuestion = new question(allQuestions[i], allChoices[i], answer);
+            TrueOrFalseQuestion newQuestion = new TrueOrFalseQuestion(allQuestions[i], answer);
             Array.Resize(ref questions, questions.Length + 1);
             questions[questions.Length - 1] = newQuestion;
         }
@@ -97,10 +100,6 @@ public class quiz1  : MonoBehaviour
             currentQuestion = questions[currentQuestionNumber];
             questionDisplay.text = currentQuestion.questionText;
             resultDisplay.text = "";
-            choiceA.text = currentQuestion.choices[0];
-            choiceB.text = currentQuestion.choices[1];
-            choiceC.text = currentQuestion.choices[2];
-            choiceD.text = currentQuestion.choices[3];
         }
         else
         {
@@ -108,7 +107,7 @@ public class quiz1  : MonoBehaviour
         }
     }
 
-    void checkAnswer(int choice, question currentQuestion)
+    void checkAnswer(int choice, TrueOrFalseQuestion currentQuestion)
     {
         if (choice == currentQuestion.correctChoice)
         {
@@ -203,7 +202,7 @@ public class quiz1  : MonoBehaviour
     }
 
     // Buttons
-    public void ChoiceA()
+    public void False()
     {
         if (questionActive)
         {
@@ -212,12 +211,12 @@ public class quiz1  : MonoBehaviour
         }
     }
 
-    public void ChoiceB()
+    public void True()
     {
         if (questionActive)
         {
             questionActive = false;
-            checkAnswer(2, currentQuestion);
+            checkAnswer(0, currentQuestion);
         }
         
     }

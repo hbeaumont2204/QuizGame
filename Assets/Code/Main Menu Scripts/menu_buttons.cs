@@ -33,11 +33,22 @@ public class menu_buttons : MonoBehaviour
         SceneManager.LoadSceneAsync("Main Menu");
     }
 
-    public void reset() 
+    public void reset()
     {
         fileManager.updateScore("0", pScorepath);
         fileManager.updateScore("0", hScorePath);
         previousScore.text = "Previous Score: 0";
-        highScore.text = "Previous Score: 0"; 
+        highScore.text = "Previous Score: 0";
+    }
+
+    // Game mode buttons
+    public void baseGame() 
+    {
+        SceneManager.LoadSceneAsync("Game");
+    }
+
+    public void TOF()
+    {
+        SceneManager.LoadSceneAsync("T or F");
     }
 }

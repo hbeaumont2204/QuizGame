@@ -13,6 +13,7 @@ using Unity.VisualScripting;
 public class quiz  : MonoBehaviour
 {
     FileManagement fileManager = new FileManagement();
+    QuestionPackSelection packSelection = new QuestionPackSelection(); 
     public question[] questions = { }; // Array containing questions
     public int currentQuestionNumber = 0; // Index of the current question
     question currentQuestion; // The current question
@@ -72,9 +73,10 @@ public class quiz  : MonoBehaviour
     // Takes questions, choices and the correct answer index from text files
     void setup()
     {
-        string questionsPath = Path.Combine(Application.streamingAssetsPath, "Questions.txt");
-        string choicesPath = Path.Combine(Application.streamingAssetsPath, "Choices.txt");
-        string answersPath = Path.Combine(Application.streamingAssetsPath, "Answers.txt");
+        string[] questionPack = packSelection.GetQuestionPack(0);
+        string questionsPath = Path.Combine(Application.streamingAssetsPath, questionPack[0]);
+        string choicesPath = Path.Combine(Application.streamingAssetsPath, questionPack[1]);
+        string answersPath = Path.Combine(Application.streamingAssetsPath, questionPack[2]);
 
         string[] allQuestions = fileManager.ReadFile(questionsPath);
         string[][] allChoices = fileManager.GetChoices(choicesPath);

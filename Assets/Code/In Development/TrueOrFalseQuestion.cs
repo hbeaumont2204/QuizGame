@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class question1
+public class TrueOrFalseQuestion
 {
     public string questionText; // The question
-    public int correctChoice; // True or False
+    public int correctChoice; // 1 - True or 0 - False
 
     // Constructor
-    public question1(string questionText, int correctChoice)
+    public TrueOrFalseQuestion(string questionText, int correctChoice)
     {
         this.questionText = questionText;
         this.correctChoice = correctChoice;
