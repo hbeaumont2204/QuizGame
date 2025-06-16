@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 using System.IO;
 using System;
 using TMPro;
-using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 /**
  * Class for the True of False Quiz game
@@ -43,6 +38,7 @@ public class TrueOrFalse  : MonoBehaviour
     private void Start()
     {
         setup();
+        //Debug.Log(questions.Length);
     }
 
     // Called every frame
@@ -207,7 +203,7 @@ public class TrueOrFalse  : MonoBehaviour
         if (questionActive)
         {
             questionActive = false;
-            checkAnswer(1, currentQuestion);
+            checkAnswer(0, currentQuestion);
         }
     }
 
@@ -216,7 +212,7 @@ public class TrueOrFalse  : MonoBehaviour
         if (questionActive)
         {
             questionActive = false;
-            checkAnswer(0, currentQuestion);
+            checkAnswer(1, currentQuestion);
         }
         
     }

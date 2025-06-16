@@ -1826,8 +1826,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: quiz, Assembly-CSharp
+      - m_Target: {fileID: 330585553}
+        m_TargetAssemblyTypeName: TrueOrFalse, Assembly-CSharp
         m_MethodName: Skip
         m_Mode: 1
         m_Arguments:
@@ -2601,8 +2601,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: quiz, Assembly-CSharp
+      - m_Target: {fileID: 330585553}
+        m_TargetAssemblyTypeName: TrueOrFalse, Assembly-CSharp
         m_MethodName: end
         m_Mode: 1
         m_Arguments:
@@ -2708,7 +2708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: True
+  m_text: False
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: False
+  m_text: True
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4382,7 +4382,7 @@ GameObject:
   - component: {fileID: 1672519729}
   - component: {fileID: 1672519728}
   m_Layer: 5
-  m_Name: False
+  m_Name: True Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4405,7 +4405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -47}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1672519728
@@ -4452,9 +4452,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: quiz, Assembly-CSharp
-        m_MethodName: ChoiceB
+      - m_Target: {fileID: 330585553}
+        m_TargetAssemblyTypeName: TrueOrFalse, Assembly-CSharp
+        m_MethodName: True
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4877,7 +4877,7 @@ GameObject:
   - component: {fileID: 2052437621}
   - component: {fileID: 2052437620}
   m_Layer: 5
-  m_Name: True
+  m_Name: False Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4900,7 +4900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: -34.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052437620
@@ -4947,9 +4947,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: quiz, Assembly-CSharp
-        m_MethodName: ChoiceA
+      - m_Target: {fileID: 330585553}
+        m_TargetAssemblyTypeName: TrueOrFalse, Assembly-CSharp
+        m_MethodName: False
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

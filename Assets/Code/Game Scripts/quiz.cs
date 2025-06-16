@@ -43,6 +43,7 @@ public class quiz  : MonoBehaviour
     private void Start()
     {
         setup();
+        Debug.Log(questions.Length);
     }
 
     // Called every frame

@@ -12,10 +12,9 @@ public class QuestionPackSelection {
         { "Questions2.txt", "Choices2.txt", "Answers2.txt" }
     };
 
-    public static string[,] TFQuestionPacks =
-    {
-        { "TFQuestions", "TFAnswers" },
-        { "TFQuestions2", "TFAnswers2" }
+    public static string[,] TFQuestionPacks = {
+        { "TFQuestions.txt", "TFAnswers.txt" },
+        { "TFQuestions2.txt", "TFAnswers2.txt" }
     };
 
     int max;

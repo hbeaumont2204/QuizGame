@@ -1,7 +1,0 @@
-
-Version 1.0.1
-
-Reset button on main menu which resets the High and Previous Scores.
-Number of questions increased to 20.
-Rules button on the game menu which displays the rules on the left of the screen. Can be toggled on/off.
-Small changes to Main Menu.

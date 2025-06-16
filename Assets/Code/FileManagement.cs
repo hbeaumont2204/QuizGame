@@ -26,13 +26,12 @@ public class FileManagement
                 {
                     Array.Resize(ref data, data.Length + 1);
                     data[data.Length - 1] = line;
-                    //Debug.Log(line);
                 }
             }
         }
         else
         {
-            Debug.Log("Error");
+            throw new InvalidArgumentException("Invalid file path");
         }
         return data;
     }
@@ -51,16 +50,14 @@ public class FileManagement
                     Array.Resize(ref data, data.Length + 1);
                     data[data.Length - 1] = options;
                 }
-
             }
         }
         else
         {
-            Debug.Log("Error");
+            throw new InvalidArgumentException("Invalid file path");
         }
         return data;
     }
-
     public string getScore(string path)
     {
         StreamReader sr = new StreamReader(path);
@@ -77,8 +74,7 @@ public class FileManagement
             {
                 sw.WriteLine(text);
                 sw.Close();
-            }
-            
+            }          
         }
     }
 }
