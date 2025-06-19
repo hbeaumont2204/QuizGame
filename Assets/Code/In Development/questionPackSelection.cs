@@ -1,4 +1,3 @@
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 /**
@@ -8,9 +7,10 @@ using UnityEngine;
  */
 public class QuestionPackSelection {
     public static string[,] questionPacks = { 
-        { "Questions.txt", "Choices.txt", "Answers.txt" },
-        { "Questions2.txt", "Choices2.txt", "Answers2.txt" }
+        { "Questions.txt", "Choices.txt", "Answers.txt" }
     };
+
+    // { "Questions2.txt", "Choices2.txt", "Answers2.txt" }
 
     public static string[,] TFQuestionPacks = {
         { "TFQuestions.txt", "TFAnswers.txt" },

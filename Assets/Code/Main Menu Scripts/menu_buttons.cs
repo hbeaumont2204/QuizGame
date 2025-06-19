@@ -12,6 +12,7 @@ using Unity.VisualScripting;
 public class menu_buttons : MonoBehaviour
 {
     public GameObject rulesScreen;
+    public GameObject choiceScreen;
     FileManagement fileManager = new FileManagement();
     string hScorePath = Path.Combine(Application.streamingAssetsPath, "High Score.txt");
     string pScorepath = Path.Combine(Application.streamingAssetsPath, "Previous Score.txt");
@@ -21,7 +22,7 @@ public class menu_buttons : MonoBehaviour
     // Main Menu buttons
     public void play_game()
     {
-        SceneManager.LoadSceneAsync("Game");
+        choiceScreen.SetActive(true);
     }
     public void quit_game()
     {
