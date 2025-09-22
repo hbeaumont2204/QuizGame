@@ -7,7 +7,8 @@ using UnityEngine;
  */
 public class QuestionPackSelection {
     public static string[,] questionPacks = { 
-        { "Questions.txt", "Choices.txt", "Answers.txt" }
+        { "Questions.txt", "Choices.txt", "Answers.txt" },
+        { "Questions2.txt", "Choices2.txt", "Answers2.txt" }
     };
 
     // { "Questions2.txt", "Choices2.txt", "Answers2.txt" }
@@ -17,7 +18,7 @@ public class QuestionPackSelection {
         { "TFQuestions2.txt", "TFAnswers2.txt" }
     };
 
-    int max;
+    int max = 2;
     int randomInt;
     /**
      * @param gameMode - Value based on game mode
