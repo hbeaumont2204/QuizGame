@@ -8,14 +8,19 @@ using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using Random = UnityEngine.Random;
+using System.Linq;
 
 
 public class quiz  : MonoBehaviour
 {
     FileManagement fileManager = new FileManagement();
-    QuestionPackSelection packSelection = new QuestionPackSelection(); 
+    QuestionPackSelection packSelection = new QuestionPackSelection();
     public question[] questions = { }; // Array containing questions
-    public int currentQuestionNumber = 0; // Index of the current question
+
+    public int currentQuestionNumber; // Index of the current question
+
+    public int[] selectedNumbers = { }; // Question numbers added
     question currentQuestion; // The current question
     public int score = 10; // Player Score
     public bool questionActive;
@@ -43,7 +48,7 @@ public class quiz  : MonoBehaviour
     private void Start()
     {
         setup();
-        Debug.Log(questions.Length);
+        //Debug.Log(questions.Length);
     }
 
     // Called every frame
@@ -96,7 +101,22 @@ public class quiz  : MonoBehaviour
     // Displays the current question
     void displayQuestion()
     {
-        if (currentQuestionNumber < questions.Length)
+        do
+        {
+            currentQuestionNumber = Random.Range(0, questions.Length);
+            if (selectedNumbers.Contains(currentQuestionNumber))
+            {
+                if (selectedNumbers.Length == questions.Length)
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        } while (selectedNumbers.Contains(currentQuestionNumber));
+        if (selectedNumbers.Length < questions.Length)
         {
             timer = 30;
             timerDisplay.color = Color.green;
